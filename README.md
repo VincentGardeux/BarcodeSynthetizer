@@ -48,3 +48,34 @@ List of options:
         --min-entropy-2 %f      Minimum Shannon Entropy (2-mer) [Default = 2.5]
         -h                      Print help message
 ```
+
+## Example
+
+```bash
+java -jar /software/BarcodeSynthetizer-1.0.jar -l 12 --min-hamming 6 -o barcode.list.txt
+```
+
+Generates the following output:
+
+```
+BarcodeSynthetizer 1.0
+
+Config: Barcode length = 12
+Config: Avoid 'G' in the 2 first nucleotides
+Config: Avoid 'T' in the 2 last nucleotides
+Config: Minimum Hamming distance = 6
+Config: Maximum Homopolymer length = 2
+Config: GC ratio should be in [35.0%, 65.0%]
+Config: Minimum Shannon Entropy (1-mer) = 1.5
+Config: Minimum Shannon Entropy (2-mer) = 2.5
+Config: No input barcode file provided. Starting generation from scratch.
+
+16777216 barcodes were tested [337 valid one(s), 337 new one(s)]
+Synthesis done in 17 s 833 ms
+```
+
+And generate a text [file with 337 barcodes](../master/example/barcode.list.txt?raw=true) (one per line)
+
+## Remarks
+- This script test all possible barcodes in alphabetical order. It's not an optimization algorithm to find for e.g. the larger possible barcode set.
+- Shannon's entropy functions were implemented in Java to generate exactly the same results as the entropy (first order entropy = 1-mer entropy) and entropy2 (second order entropy = 2-mer entropy) functions from the [acss package in R](https://github.com/singmann/acss/)
