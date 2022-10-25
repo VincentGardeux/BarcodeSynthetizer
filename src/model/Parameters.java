@@ -231,9 +231,9 @@ public class Parameters
 		System.out.println("\t--min-gc-ratio %f\tMinimum GC ratio [Default = 35, i.e. GC in (35%, 65%)]");
 		System.out.println("\t--min-entropy %f\tMinimum Shannon Entropy (1-mer) [Default = 1.5]");
 		System.out.println("\t--min-entropy-2 %f\tMinimum Shannon Entropy (2-mer) [Default = 2.5]");
-		System.out.println("\t--report-freq\tUse this option to report nucleotide frequencies in generated barcodes");
-		System.out.println("\t--sequential\tUse this option to use the obsolete one-pass 'sequential' algorithm");
-		System.out.println("\t--seed %i\tChange the random seed for the two-pass 'randomized' algorithm");
+		System.out.println("\t--report-freq\t\tUse this option to report nucleotide frequencies in generated barcodes");
+		System.out.println("\t--sequential\t\tUse this option to use the obsolete one-pass 'sequential' algorithm");
+		System.out.println("\t--seed %i\t\tChange the random seed for the two-pass 'randomized' algorithm");
 		System.out.println("\t-h\t\t\tPrint help message");	
 	}
 }
