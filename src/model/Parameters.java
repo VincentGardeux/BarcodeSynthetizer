@@ -21,6 +21,8 @@ public class Parameters
 	public static String output_file = null;
 	public static String input_file = null;
 	public static boolean report_freq = false;
+	public static boolean sequential = false;
+	public static long seed = 42;
 	
 	// Preloaded list of barcodes
 	public static HashSet<String> valid_barcodes = null;
@@ -155,6 +157,20 @@ public class Parameters
 					case "--report-freq":
 						report_freq = true;
 						break;
+					case "--sequential":
+						sequential = true;
+						break;
+					case "--seed":
+						i++;
+						try
+						{
+							Parameters.seed = Long.parseLong(args[i]);
+						}
+						catch(NumberFormatException nfe)
+						{
+							new ErrorMessage("The '--seed' option should be followed by a Integer. You entered " + args[i]);
+						}
+						break;
 					default:
 						new ErrorMessage("Unused argument: " + args[i]);
 				}
@@ -216,6 +232,8 @@ public class Parameters
 		System.out.println("\t--min-entropy %f\tMinimum Shannon Entropy (1-mer) [Default = 1.5]");
 		System.out.println("\t--min-entropy-2 %f\tMinimum Shannon Entropy (2-mer) [Default = 2.5]");
 		System.out.println("\t--report-freq\tUse this option to report nucleotide frequencies in generated barcodes");
+		System.out.println("\t--sequential\tUse this option to use the obsolete one-pass 'sequential' algorithm");
+		System.out.println("\t--seed %i\tChange the random seed for the two-pass 'randomized' algorithm");
 		System.out.println("\t-h\t\t\tPrint help message");	
 	}
 }
