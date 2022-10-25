@@ -5,11 +5,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashSet;
 
-enum Strand{NO, YES, REVERSE};
-
 public class Parameters 
 {
-	public static final String currentVersion = "1.0";
+	public static final String currentVersion = "1.1";
 	
 	// Input parameters
 	public static int length = -1;
@@ -22,6 +20,7 @@ public class Parameters
 	public static int ending_T = 2;
 	public static String output_file = null;
 	public static String input_file = null;
+	public static boolean report_freq = false;
 	
 	// Preloaded list of barcodes
 	public static HashSet<String> valid_barcodes = null;
@@ -153,6 +152,9 @@ public class Parameters
 							new ErrorMessage("The '--ending-t' option should be followed by a Integer. You entered " + args[i]);
 						}
 						break;
+					case "--report-freq":
+						report_freq = true;
+						break;
 					default:
 						new ErrorMessage("Unused argument: " + args[i]);
 				}
@@ -213,6 +215,7 @@ public class Parameters
 		System.out.println("\t--min-gc-ratio %f\tMinimum GC ratio [Default = 35, i.e. GC in (35%, 65%)]");
 		System.out.println("\t--min-entropy %f\tMinimum Shannon Entropy (1-mer) [Default = 1.5]");
 		System.out.println("\t--min-entropy-2 %f\tMinimum Shannon Entropy (2-mer) [Default = 2.5]");
+		System.out.println("\t--report-freq\tUse this option to report nucleotide frequencies in generated barcodes");
 		System.out.println("\t-h\t\t\tPrint help message");	
 	}
 }

@@ -64,16 +64,58 @@ public class BarcodeSynthetizer
 		System.out.println(nbBarcodes + " barcodes were tested [" + valid_barcodes.size() + " valid one(s), "+ newBarcodes +" new one(s)]");
 		System.out.println("Synthesis done in " + Utils.toReadableTime(System.currentTimeMillis() - start));
 	
+		float[][] frequencies = new float[4][Parameters.length];
 		try
 		{
 			BufferedWriter bw = new BufferedWriter(new FileWriter(Parameters.output_file));
-			for(String s:valid_barcodes) bw.write(s + "\n");
+			for(String s:valid_barcodes) 
+			{
+				bw.write(s + "\n");
+				if(Parameters.report_freq)
+				{
+					for(int i = 0; i < s.length(); i++)
+					{
+						switch(s.charAt(i))
+						{
+							case 'A':
+								frequencies[0][i] += 1f/valid_barcodes.size();
+								break;
+							case 'C':
+								frequencies[1][i] += 1f/valid_barcodes.size();
+								break;
+							case 'G':
+								frequencies[2][i] += 1f/valid_barcodes.size();
+								break;
+							case 'T':
+								frequencies[3][i] += 1f/valid_barcodes.size();
+								break;
+						}
+					}
+				}
+			}
 			bw.close();
 		}
 		catch(IOException ioe)
 		{
 			new ErrorMessage(ioe.getMessage());
 		}
+		// Print report freq
+		if(Parameters.report_freq)
+		{
+			System.out.print("A");
+			for(int i = 0; i < Parameters.length; i++) System.out.print("\t" + frequencies[0][i]);
+			System.out.println();
+			System.out.print("C");
+			for(int i = 0; i < Parameters.length; i++) System.out.print("\t" + frequencies[1][i]);
+			System.out.println();
+			System.out.print("G");
+			for(int i = 0; i < Parameters.length; i++) System.out.print("\t" + frequencies[2][i]);
+			System.out.println();
+			System.out.print("T");
+			for(int i = 0; i < Parameters.length; i++) System.out.print("\t" + frequencies[3][i]);
+			System.out.println();
+		}
 	}
+	
 
 }
