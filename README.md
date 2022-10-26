@@ -1,8 +1,8 @@
 ![](https://img.shields.io/badge/build-passing-green.svg)
-![](https://img.shields.io/badge/version-1.0-blue.svg)
+![](https://img.shields.io/badge/version-1.1-blue.svg)
 ![](https://img.shields.io/badge/java-1.8-red.svg)
 
-# DNA BarcodeSynthetizer 1.0
+# DNA BarcodeSynthetizer 1.1
 
 A tool for generating dna barcodes (A,C,G,T) of any length, following a given set of rules.
 
