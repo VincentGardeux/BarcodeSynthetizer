@@ -81,7 +81,8 @@ public class BarcodeSynthetizer
 		totalBarcodes = potential_barcodes.size();
 		nbBarcodes = 0;
 		threshold = 1;
-		HashSet<String> valid_barcodes = (Parameters.valid_barcodes != null)?Parameters.valid_barcodes:new HashSet<String>();
+		List<String> valid_barcodes = new ArrayList<String>(); // ArrayList to keep existing seed barcodes in correct order
+		if(Parameters.valid_barcodes != null) valid_barcodes.addAll(Parameters.valid_barcodes);
 		for(String b1:potential_barcodes)
 		{
 			// Only Hamming distance is left to check
