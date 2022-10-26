@@ -7,7 +7,7 @@
 A tool for generating dna barcodes (A,C,G,T) of any length, following a given set of rules.
 
 ## Download software
-BarcodeSynthetizer is provided as a [single executable jar file](../master/release/BarcodeSynthetizer-1.0.jar?raw=true).
+BarcodeSynthetizer is provided as a [single executable jar file](../master/release/BarcodeSynthetizer-1.1.jar?raw=true).
 The .jar file contains all required materials and can be run on any terminal.
 
 ## Dependencies
@@ -28,12 +28,12 @@ If not, you may need to update your version; see the [Oracle Java website](http:
 To check that BarcodeSynthetizer is working properly, run the following command:
 
 ```bash
-java -jar BarcodeSynthetizer-1.0.jar -h
+java -jar BarcodeSynthetizer-1.1.jar -h
 ```
 The output should look like:
 
 ```
-BarcodeSynthetizer 1.0
+BarcodeSynthetizer 1.1
 
 List of options:
         -l %i                   [Required] Barcode length
@@ -46,6 +46,9 @@ List of options:
         --min-gc-ratio %f       Minimum GC ratio [Default = 35, i.e. GC in (35%, 65%)]
         --min-entropy %f        Minimum Shannon Entropy (1-mer) [Default = 1.5]
         --min-entropy-2 %f      Minimum Shannon Entropy (2-mer) [Default = 2.5]
+        --report-freq           Use this option to report nucleotide frequencies in generated barcodes
+        --sequential            Use this option to use the obsolete one-pass 'sequential' algorithm
+        --seed %i               Change the random seed for the two-pass 'randomized' algorithm
         -h                      Print help message
 ```
 
@@ -77,5 +80,5 @@ Synthesis done in 17 s 833 ms
 And generate a text [file with 337 barcodes](../master/example/barcode.list.txt?raw=true) (one per line)
 
 ## Remarks
-- This script test all possible barcodes in alphabetical order. It's not an optimization algorithm to find for e.g. the larger possible barcode set.
+- This script is not an optimization algorithm to find for e.g. the larger possible barcode set.
 - Shannon's entropy functions were implemented in Java to generate exactly the same results as the entropy (first order entropy = 1-mer entropy) and entropy2 (second order entropy = 2-mer entropy) functions from the [acss package in R](https://github.com/singmann/acss/)
